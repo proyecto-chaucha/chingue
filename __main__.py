@@ -1,13 +1,14 @@
 from config import RPCuser, RPCpassword, RPCport
 from bitcoinrpc.authproxy import AuthServiceProxy
 from pymongo import MongoClient, DESCENDING
+from time import sleep
 from sys import exit
 
 def main():
 	# MongoDB
 	client = MongoClient()
 	db = client['blockchain']
-	
+
 	# Collections
 	blocksDB = db['blocks']
 	txDB = db['tx']
@@ -27,6 +28,7 @@ def main():
 
 	# Capture
 	if blockCount > lastBlock - 1:
+		sleep(0.1)
 		for i in range(lastBlock, blockCount + 1):
 			print("- Block #%i" % i)
 
