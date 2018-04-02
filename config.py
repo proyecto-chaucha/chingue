@@ -1,3 +1,3 @@
-RPCuser = 'chaucharpc'
-RPCpassword = 'C2yB3UNHS2c8yVDwmJj9VEQ9rbnAZaUgZPKq77aUBGAi'
+RPCuser = 'chaucha'
+RPCpassword = 'chaucha'
 RPCport = 21662

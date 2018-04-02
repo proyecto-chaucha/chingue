@@ -12,7 +12,6 @@ def main():
 	# Collections
 	blocksDB = db['blocks']
 	txDB = db['tx']
-	diffDB = db['diff']
 
 	# JSON-RPC
 	rpc = AuthServiceProxy("http://%s:%s@127.0.0.1:%i"%(RPCuser, RPCpassword, RPCport))
@@ -28,7 +27,6 @@ def main():
 
 	# Capture
 	if blockCount > lastBlock - 1:
-		sleep(0.1)
 		for i in range(lastBlock, blockCount + 1):
 			print("- Block #%i" % i)
 
@@ -36,6 +34,18 @@ def main():
 			block = rpc.getblock(rpc.getblockhash(i))
 
 			if block['height'] > 0:
+				# Remove unused data
+				del block['previousblockhash']
+				del block['strippedsize']
+				del block['confirmations']
+				del block['version']
+				del block['versionHex']
+				del block['merkleroot']
+				del block['mediantime']
+				del block['nonce']
+				del block['bits']
+				del block['chainwork']
+				
 				# Remove nextblockhash
 				if 'nextblockhash' in block:
 					del block['nextblockhash']
